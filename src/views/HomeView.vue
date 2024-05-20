@@ -2,7 +2,7 @@
   <main>
     <main class="board">
       <section class="column" id="todo">
-        <h2>To Do</h2>
+        <h2 style="color: yellow;">To Do</h2>
         <ul class="tasks" id="todo-tasks">
           <li v-for="(task, index) in tasks['todo']" :key="index" class="task">
             <strong class="name">{{ task.name }}</strong>
@@ -13,7 +13,7 @@
         </ul>
       </section>
       <section class="column" id="in-progress">
-        <h2>In Progress</h2>
+        <h2 style="color: yellow;">In Progress</h2>
         <ul class="tasks" id="in-progress-tasks">
           <li v-for="(task, index) in tasks['in-progress']" :key="index" class="task">
             <strong class="name">{{ task.name }}</strong>
@@ -24,7 +24,7 @@
         </ul>
       </section>
       <section class="column" id="done">
-        <h2>Done</h2>
+        <h2 style="color: yellow;">Done</h2>
         <ul class="tasks" id="done-tasks">
           <li v-for="(task, index) in tasks['done']" :key="index" class="task">
             <strong class="name">{{ task.name }}</strong>

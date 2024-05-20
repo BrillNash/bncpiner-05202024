@@ -1,5 +1,66 @@
 * {
+  font-family: Arial, sans-serif;
+}
+ body {
+  background: #191919;
+ }
+
+#task-form {
+  margin-top: 2rem;
+}
+
+.description, .name {
+  word-break: break-word;
+}
+
+.name {
+  color: #d9d9d9;
+  font-size: 1.2rem;
+}
+
+.board {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.tasks {
+  list-style-type: none;
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+}
+
+.task {
+/*  background-color: #f9f9f9;*/
+  background-color: #121212;
+  border: 1px solid transparent;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: move;
+  color: #929292;
+}
+
+.task button {
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+.task:hover {
+  color: yellow;
+  border: 1px solid yellow;
+}
+
+.task:hover .name {
+  color: yellow;
+}
+
+export interface Task {
+  id: string;
+  name: string;
+  description?: string;
+  status: string;
 }
