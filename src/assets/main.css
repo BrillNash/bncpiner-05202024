@@ -1,9 +1,56 @@
 * {
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }
  body {
-  background: #191919;
+  background: #F7F7F2;
+  color: #121113;
  }
+
+ hr {
+  border: none;
+  border-bottom: 1px solid #896b32;
+ }
+
+ button {
+  margin: 0 0.5rem 0 0.5rem;
+  background: #fff4c2;
+  outline: none;
+  border: none;
+  padding:0.3rem 0.8rem;
+  border-radius: 0.2rem;
+}
+
+input, textarea, select {
+  border: 1px solid lightgrey;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  background: #F7F7F2;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  width: 550px;
+  margin: auto;
+}
+
+form button{
+  background: #caa35b;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+
+}
+
+.task button {
+  margin-top: 1rem;
+}
 
 #task-form {
   margin-top: 2rem;
@@ -14,53 +61,42 @@
 }
 
 .name {
-  color: #d9d9d9;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .board {
   display: flex;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .column {
   flex: 1;
-  padding: 10px;
   text-align: center;
-  border: 2px solid black;
+  min-height: 80vh;
 }
 
 .tasks {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .task {
-/*  background-color: #f9f9f9;*/
-  background-color: #121212;
+  background-color: #caa35b;
   border: 1px solid transparent;
   padding: 10px;
-  margin-bottom: 5px;
   cursor: move;
-  color: #929292;
-}
-
-.task button {
-  margin: 0 0.5rem 0 0.5rem;
+  border-radius: 0.5rem;
+  color: #362c06;
+  transition: all ease 0.1s;
 }
 
 .task:hover {
-  color: yellow;
-  border: 1px solid yellow;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  transform: scale(1.03);
 }
 
-.task:hover .name {
-  color: yellow;
-}
-
-export interface Task {
-  id: string;
-  name: string;
-  description?: string;
-  status: string;
-}

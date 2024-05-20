@@ -1,45 +1,10 @@
 <template>
   <main>
-    <main class="board">
-      <section class="column" id="todo">
-        <h2 style="color: yellow;">To Do</h2>
-        <ul class="tasks" id="todo-tasks">
-          <li v-for="(task, index) in tasks['todo']" :key="index" class="task">
-            <strong class="name">{{ task.name }}</strong>
-            <p class="description">{{ task.description }}</p>
-            <button @click="showEditForm('todo', task)">Edit</button>
-            <button @click="store.deleteTask('todo', task.id)">Delete</button>
-          </li>
-        </ul>
-      </section>
-      <section class="column" id="in-progress">
-        <h2 style="color: yellow;">In Progress</h2>
-        <ul class="tasks" id="in-progress-tasks">
-          <li v-for="(task, index) in tasks['in-progress']" :key="index" class="task">
-            <strong class="name">{{ task.name }}</strong>
-            <p class="description">{{ task.description }}</p>
-            <button @click="showEditForm('in-progress', task)">Edit</button>
-            <button @click="store.deleteTask('in-progress', task.id)">Delete</button>
-          </li>
-        </ul>
-      </section>
-      <section class="column" id="done">
-        <h2 style="color: yellow;">Done</h2>
-        <ul class="tasks" id="done-tasks">
-          <li v-for="(task, index) in tasks['done']" :key="index" class="task">
-            <strong class="name">{{ task.name }}</strong>
-            <p class="description">{{ task.description }}</p>
-            <button @click="showEditForm('done', task)">Edit</button>
-            <button @click="store.deleteTask('done', task.id)">Delete</button>
-          </li>
-        </ul>
-      </section>
-    </main>
     <form v-if="!isEditMode" @submit.prevent="store.addTask">
       <label for="task">Task:</label>
       <input type="text" id="task" name="task" v-model="taskText" maxlength="250" required>
       <label for="description">Description:</label>
-      <textarea type="text" id="description" name="description" v-model="description" maxlength="1000"/>
+      <textarea rows="5" type="text" id="description" name="description" v-model="description" maxlength="1000"/>
       <label for="status">Status:</label>
       <select id="status" name="status" v-model="status">
         <option value="todo">To Do</option>
@@ -52,7 +17,7 @@
       <label for="task">Task:</label>
       <input type="text" id="task" name="task" v-model="taskText" maxlength="250" required>
       <label for="description">Description:</label>
-      <textarea type="text" id="description" name="description" v-model="description" maxlength="1000"/>
+      <textarea rows="5" type="text" id="description" name="description" v-model="description" maxlength="1000"/>
       <label for="status">Status:</label>
       <select id="status" name="status" v-model="status">
         <option value="todo">To Do</option>
@@ -62,6 +27,44 @@
       <button type="submit">Edit Task</button>
       <button type="button" @click="clearForm">Cancel</button>
     </form>
+    <div class="board">
+      <section class="column" id="todo">
+        <h2>To Do</h2>
+        <ul class="tasks" id="todo-tasks">
+          <li v-for="(task, index) in tasks['todo']" :key="index" class="task">
+            <strong class="name">{{ task.name }}</strong>
+            <hr/>
+            <p class="description">{{ task.description }}</p>
+            <button @click="showEditForm('todo', task)">Edit</button>
+            <button @click="store.deleteTask('todo', task.id)">Delete</button>
+          </li>
+        </ul>
+      </section>
+      <section class="column" id="in-progress">
+        <h2>In Progress</h2>
+        <ul class="tasks" id="in-progress-tasks">
+          <li v-for="(task, index) in tasks['in-progress']" :key="index" class="task">
+            <strong class="name">{{ task.name }}</strong>
+            <hr/>
+            <p class="description">{{ task.description }}</p>
+            <button @click="showEditForm('in-progress', task)">Edit</button>
+            <button @click="store.deleteTask('in-progress', task.id)">Delete</button>
+          </li>
+        </ul>
+      </section>
+      <section class="column" id="done">
+        <h2>Done</h2>
+        <ul class="tasks" id="done-tasks">
+          <li v-for="(task, index) in tasks['done']" :key="index" class="task">
+            <strong class="name">{{ task.name }}</strong>
+            <hr/>
+            <p class="description">{{ task.description }}</p>
+            <button @click="showEditForm('done', task)">Edit</button>
+            <button @click="store.deleteTask('done', task.id)">Delete</button>
+          </li>
+        </ul>
+      </section>
+    </div>
   </main>
 </template>
 
