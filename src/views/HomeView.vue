@@ -1,10 +1,10 @@
 <template>
   <main>
     <main class="board">
-      <section class="column" id="todo" @drop="drop('todo')" @dragover.prevent>
+      <section class="column" id="todo">
         <h2>To Do</h2>
         <ul class="tasks" id="todo-tasks">
-          <li v-for="(task, index) in tasks['todo']" :key="index" class="task" draggable @dragstart="drag('todo', index, $event)">
+          <li v-for="(task, index) in tasks['todo']" :key="index" class="task">
             <strong class="name">{{ task.name }}</strong>
             <p class="description">{{ task.description }}</p>
             <button @click="showEditForm('todo', task)">Edit</button>
@@ -12,10 +12,10 @@
           </li>
         </ul>
       </section>
-      <section class="column" id="in-progress" @drop="drop('in-progress')" @dragover.prevent>
+      <section class="column" id="in-progress">
         <h2>In Progress</h2>
         <ul class="tasks" id="in-progress-tasks">
-          <li v-for="(task, index) in tasks['in-progress']" :key="index" class="task" draggable @dragstart="drag('in-progress', index, $event)">
+          <li v-for="(task, index) in tasks['in-progress']" :key="index" class="task">
             <strong class="name">{{ task.name }}</strong>
             <p class="description">{{ task.description }}</p>
             <button @click="showEditForm('in-progress', task)">Edit</button>
@@ -23,10 +23,10 @@
           </li>
         </ul>
       </section>
-      <section class="column" id="done" @drop="drop('done')" @dragover.prevent>
+      <section class="column" id="done">
         <h2>Done</h2>
         <ul class="tasks" id="done-tasks">
-          <li v-for="(task, index) in tasks['done']" :key="index" class="task" draggable @dragstart="drag('done', index, $event)">
+          <li v-for="(task, index) in tasks['done']" :key="index" class="task">
             <strong class="name">{{ task.name }}</strong>
             <p class="description">{{ task.description }}</p>
             <button @click="showEditForm('done', task)">Edit</button>
@@ -67,7 +67,7 @@
 
 <script setup lang="ts">
   import { ref, onMounted } from 'vue';
-  import Task from '@/types/task.ts'
+  import Task from '@/types/task.d.ts'
   import { uuid } from 'vue-uuid'
 
   const isEditMode = ref(false)
@@ -171,27 +171,6 @@
     const taskIndex = tasks.value[column].findIndex(task => task.id === id)
     if(taskIndex !== -1) {
       tasks.value[column].splice(taskIndex, 1);
-    }
-  }
-
-  function allowDrop(event: DragEvent) {
-    event.preventDefault();
-  }
-
-  function drag(column: string, index: number, event: DragEvent) {
-    event.dataTransfer?.setData('text', `${column}:${index}`);
-  }
-
-  function drop(targetColumn: string) {
-    const [sourceColumn, indexStr] = event.dataTransfer?.getData('text')?.split(':') || [];
-    if (sourceColumn && indexStr) {
-      const index = parseInt(indexStr, 10);
-      const taskText = tasks.value[sourceColumn][index];
-      const currentIndex = tasks.value[targetColumn].indexOf(taskText);
-      if (currentIndex === -1) {
-        tasks.value[targetColumn].push(taskText);
-        tasks.value[sourceColumn].splice(index, 1);
-      }
     }
   }
 </script>
